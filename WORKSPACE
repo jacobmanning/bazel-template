@@ -7,6 +7,10 @@ http_archive(
     urls = ["https://github.com/grailbio/bazel-toolchain/archive/master.tar.gz"],
 )
 
+load("@com_grail_bazel_toolchain//toolchain:deps.bzl", "bazel_toolchain_dependencies")
+
+bazel_toolchain_dependencies()
+
 load("@com_grail_bazel_toolchain//toolchain:rules.bzl", "llvm_toolchain")
 
 llvm_toolchain(
@@ -18,11 +22,8 @@ load("@llvm_toolchain//:toolchains.bzl", "llvm_register_toolchains")
 
 llvm_register_toolchains()
 
-# Eigen
 http_archive(
-    name = "eigen",
-    build_file = "//ThirdParty:eigen.BUILD",
-    sha256 = "3a66f9bfce85aff39bc255d5a341f87336ec6f5911e8d816dd4a3fdc500f8acf",
-    url = "https://bitbucket.org/eigen/eigen/get/c5e90d9.tar.gz",
-    strip_prefix="eigen-eigen-c5e90d9e764e"
+    name = "catch2",
+    url = "https://github.com/evanmoran/catch2-bazel/archive/v2.2.3.tar.gz",
+    strip_prefix = "catch2-bazel-2.2.3",
 )
